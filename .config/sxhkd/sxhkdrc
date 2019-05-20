@@ -1,0 +1,13 @@
+# Basic binds
+super + Return
+        $TERMINAL
+super + d
+        dmenu_run
+super + m
+        $TERMINAL -e ncmpcpp
+super + i
+        $TERMINAL -e htop
+super + shift + a
+        $TERMINAL -e pulsemixer
+super + shift + w
+        $BROWSER
