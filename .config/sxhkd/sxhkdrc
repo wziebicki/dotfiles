@@ -11,3 +11,5 @@ super + shift + a
         $TERMINAL -e pulsemixer
 super + shift + w
         $BROWSER
+super + Insert
+        clipmenu
