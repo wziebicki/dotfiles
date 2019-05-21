@@ -18,7 +18,7 @@ export JAVA_HOME="$HOME/.sdkman/candidates/java/current/"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-
+alias clipclean='clipdel -d .*'
 
 # less/man colors
 export LESS=-R
