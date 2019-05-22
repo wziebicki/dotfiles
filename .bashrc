@@ -19,6 +19,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias clipclean='clipdel -d .*'
+alias r='ranger'
 
 # less/man colors
 export LESS=-R
