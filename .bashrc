@@ -20,6 +20,8 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias clipclean='clipdel -d .*'
 alias r='ranger'
+alias cm='nvim $HOME/.config/mutt/muttrc'
+alias cv='nvim $HOME/.config/nvim/init.vim'
 
 # less/man colors
 export LESS=-R
