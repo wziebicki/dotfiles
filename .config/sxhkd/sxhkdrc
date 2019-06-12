@@ -15,3 +15,5 @@ super + shift + w
         $BROWSER
 super + Insert
         clipmenu
+super + c
+        $TERMINAL -e calcurse

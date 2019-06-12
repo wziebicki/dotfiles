@@ -22,6 +22,7 @@ alias clipclean='clipdel -d .*'
 alias r='ranger'
 alias cm='nvim $HOME/.config/mutt/muttrc'
 alias cv='nvim $HOME/.config/nvim/init.vim'
+alias cb='nvim $HOME/.bashrc'
 
 # less/man colors
 export LESS=-R
