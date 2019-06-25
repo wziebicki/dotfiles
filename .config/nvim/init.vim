@@ -27,7 +27,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'easymotion/vim-easymotion'
 Plug 'w0rp/ale'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'mboughaba/i3config.vim'
@@ -83,7 +83,6 @@ set laststatus=2
 if has('statusline')
   set statusline=%<%f\ %h%m%r}%=%-14.(%l,%c%V%)\ %P
   set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
   set statusline+=%*
 endif
 
@@ -191,7 +190,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 ""Autmatically source the .vimrc file after editing
 augroup autosourcing
   autocmd!
-  autocmd BufWritePost .vimrc source %
+  autocmd BufWritePost init.vim source %
 augroup END
 
 aug i3config_ft_detection
@@ -199,57 +198,26 @@ aug i3config_ft_detection
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
 
-" FZF functions
-function! s:buflist()
-  redir => ls
-  silent ls
-  redir END
-  return split(ls, '\n')
-endfunction
-
-function! s:bufopen(e)
-  execute 'buffer' matchstr(a:e, '^[ 0-9]*')
-endfunction
-
-nnoremap <silent> <Leader><Enter> :call fzf#run({
-\   'source':  reverse(<sid>buflist()),
-\   'sink':    function('<sid>bufopen'),
-\   'options': '--multi',
-\   'down':    len(<sid>buflist()) + 2
-\ })<CR>
-
-" Open files in vertical horizontal split
-nnoremap <silent> <Leader>v :call fzf#run({
-\   'right': winwidth('.') / 2,
-\   'options': '--multi',
-\   'sink':  'vertical botright split' })<CR>
-
-
-function! s:line_handler(l)
-  let keys = split(a:l, ':\t')
-  exec 'buf' keys[0]
-  exec keys[1]
-  normal! ^zz
-endfunction
-
-function! s:buffer_lines()
-  let res = []
-  for b in filter(range(1, bufnr('$')), 'buflisted(v:val)')
-    call extend(res, map(getbufline(b,0,"$"), 'b . ":\t" . (v:key + 1) . ":\t" . v:val '))
-  endfor
-  return res
-endfunction
-
-command! FZFLines call fzf#run({
-\   'source':  <sid>buffer_lines(),
-\   'sink':    function('<sid>line_handler'),
-\   'options': '--extended --nth=3..',
-\   'down':    '60%'
-\})
-
 " Airline
 let g:airline_powerline_fonts = 1
 
 " Ale
 let g:airline#extensions#ale#enabled = 1
 let g:ale_enabled = 1
+
+" Fzf bindings
+nmap <Leader>f :GFiles<CR>
+nmap <Leader>F :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>t :BTags<CR>
+nmap <Leader>T :Tags<CR>
+nmap <Leader>l :BLines<CR>
+nmap <Leader>L :Lines<CR>
+nmap <Leader>' :Marks<CR>
+nmap <Leader>a :Ag<Space>
+nmap <Leader>H :Helptags!<CR>
+nmap <Leader>: :History:<CR>
+nmap <Leader>/ :History/<CR>
+nmap <Leader>M :Maps<CR>
+nmap <Leader>s :Filetypes<CR>
