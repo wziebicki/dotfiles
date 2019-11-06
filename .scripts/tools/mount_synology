@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Unmount all Synology Nas folders first
+umount_synology
+
+# Mount Synology Nas folders
+sudo mount 192.168.178.99:/volume1/video /mnt/nas/video && \
+sudo mount 192.168.178.99:/volume1/music /mnt/nas/music && \
+sudo mount 192.168.178.99:/volume1/photo /mnt/nas/photo && \
+sudo mount 192.168.178.99:/volume1/homes /mnt/nas/home && \
+notify-send "Synology folders mounted."

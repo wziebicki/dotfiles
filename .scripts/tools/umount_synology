@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ls -d /mnt/nas/* | xargs sudo umount &> /dev/null
