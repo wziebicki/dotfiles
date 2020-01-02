@@ -19,6 +19,8 @@ super + shift + x
 	prompt "Shutdown computer?" "sudo -A shutdown -h now"
 super + shift + BackSpace
 	prompt "Reboot computer?" "sudo -A reboot"  
+super + x
+  screenlock
 #
 # Environment
 super + e ; {s}
