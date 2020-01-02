@@ -6,5 +6,8 @@ unclutter &   # Remove mouse when idle
 xcompmgr &    # xcompmgr for transparency
 dunst &       # dunst for notifications
 clipmenud &   # clipboard manager
-exec i3
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+xrandr --dpi 96
+exec bspwm
 

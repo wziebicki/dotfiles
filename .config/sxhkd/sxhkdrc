@@ -15,5 +15,48 @@ super + shift + w
         $BROWSER
 super + Insert
         clipmenu
-super + c
-        $TERMINAL -e calcurse
+super + shift + x
+	prompt "Shutdown computer?" "sudo -A shutdown -h now"
+super + shift + BackSpace
+	prompt "Reboot computer?" "sudo -A reboot"  
+#
+# Environment
+super + e ; {s}
+    { \
+    pkill -USR1 -x sxhkd && notify-send -i key_bindings "Reloaded key bindings", \
+    }
+
+# focus the node in the given direction
+super + {h,j,k,l}
+	bspc node -f {west,south,north,east}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+{super,alt} + {_,shift +} Tab
+	bspc {desktop,node} -f {next,prev}.local
+
+# Move a floating window with the arrow keys (else use Alt + Left Mouse
+# Click to drag).  I seldom use floating windows.
+super + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+super + c : {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+#
+# state, then the argument is interpreted as the last state.
+super + {t, shift + f, f}
+ 	bspc node -t {tiled,floating,fullscreen}
+
+#
+# bspwm hotkeys
+#
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k} 
