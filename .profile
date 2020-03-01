@@ -2,7 +2,7 @@
 export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 export EDITOR="nvim"
 export TERMINAL="termite"
-export BROWSER="firefox"
+export BROWSER="brave"
 export READER="zathura"
 export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
 
@@ -17,7 +17,6 @@ alias cm='nvim $HOME/.config/mutt/muttrc'
 alias cv='nvim $HOME/.config/nvim/init.vim'
 alias cb='nvim $HOME/.bashrc'
 alias ch='sudo usb_modeswitch -v 0x12d1 -p 0x1f01 -J'
-alias ci3='nvim $HOME/.config/i3/config'
 # less/man colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '')"; a="${a%_}"

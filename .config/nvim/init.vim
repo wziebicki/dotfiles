@@ -30,7 +30,6 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
-Plug 'mboughaba/i3config.vim'
 call plug#end()
 
 filetype plugin indent on
