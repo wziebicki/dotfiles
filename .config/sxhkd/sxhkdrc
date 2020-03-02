@@ -15,6 +15,10 @@ super + shift + w
         $BROWSER
 super + Insert
         clipmenu
+super + v
+        nvim-qt
+super + c
+        code
 super + shift + x
 	prompt "Shutdown computer?" "sudo -A shutdown -h now"
 super + shift + BackSpace

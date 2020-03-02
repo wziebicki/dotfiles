@@ -16,6 +16,7 @@ alias r='ranger'
 alias cm='nvim $HOME/.config/mutt/muttrc'
 alias cv='nvim $HOME/.config/nvim/init.vim'
 alias cb='nvim $HOME/.bashrc'
+alias cs='nvim $HOME/.config/sxhkd/sxhkdrc'
 alias ch='sudo usb_modeswitch -v 0x12d1 -p 0x1f01 -J'
 # less/man colors
 export LESS=-R
