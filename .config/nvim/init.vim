@@ -13,8 +13,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'shougo/deoplete.nvim'
 Plug 'zchee/deoplete-docker'
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'majutsushi/tagbar'
 Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'

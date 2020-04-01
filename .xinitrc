@@ -1,13 +1,18 @@
 #!/bin/sh
 
-setbg &       # Set the background
+# xinitrc runs automatically when you run startx.
+
+# There are some small but important commands that need to be run when we start
+# the graphical environment. I keep those commands in ~/.xprofile because that
+# file is run automatically if someone uses a display manager (login screen)
+# and so they are needed there. To prevent doubling up commands, I source them
+# here with the line below.
+
+[ -f ~/.xprofile ] && . ~/.xprofile
+
 sxhkd &       # Bind keys
-unclutter &   # Remove mouse when idle
-xcompmgr &    # xcompmgr for transparency
-dunst &       # dunst for notifications
 clipmenud &   # clipboard manager
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
-xrandr --dpi 96
+#export XDG_SESSION_TYPE=x11
+#exec startxfce4
 exec bspwm
 
