@@ -12,7 +12,5 @@
 
 sxhkd &       # Bind keys
 clipmenud &   # clipboard manager
-#export XDG_SESSION_TYPE=x11
-#exec startxfce4
-exec bspwm
+exec dwm
 

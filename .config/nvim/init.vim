@@ -1,4 +1,4 @@
-" Wojciech Ziębicki vim configuration
+set nocompatible
 
 if &shell =~# 'fish$'
   set shell=sh
@@ -19,15 +19,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'flazz/vim-colorschemes'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'easymotion/vim-easymotion'
 Plug 'w0rp/ale'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 filetype plugin indent on
@@ -78,9 +76,15 @@ set cpoptions=ces$
 " tell VIM to always put a status line in, even if there is only one window
 set laststatus=2
 if has('statusline')
-  set statusline=%<%f\ %h%m%r}%=%-14.(%l,%c%V%)\ %P
-  set statusline+=%#warningmsg#
-  set statusline+=%*
+  set statusline=%t\  "tail of the filename
+  set statusline+=%{&ff} "file format
+  set statusline+=%h "help file flag
+  set statusline+=%m "modified flag
+  set statusline+=%r "read only flag
+  set statusline+=%y "filetype
+  set statusline+=%c, "cursor column
+  set statusline+=%l/%L "cursor line/total lines
+  set statusline+=\ %P "percent through file
 endif
 
 " Use deoplete.
@@ -104,9 +108,6 @@ set virtualedit=all
 
 " Make the command-line completion better
 set wildmenu
-
-" When completing by tag, show the whole tag, not just the function name
-set showfulltag
 
 " Add ignorance of whitespace to diff
 set diffopt+=iwhite
@@ -134,6 +135,9 @@ set nowritebackup
 set noswapfile
 set encoding=utf-8
 
+" History of commands
+set history=1000
+
 set undofile " Maintain undo history between sessions
 set undodir=~/.vim/undodir
 
@@ -152,6 +156,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+nnoremap n nzz
+nnoremap N Nzz
+
 set splitbelow
 set splitright
 
@@ -168,9 +175,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsUsePythonVersion = 3
-
-" Tagbar
-nmap <F8> :TagbarToggle<CR>
 
 " Quicklist navigation
 nnoremap <leader>a :cclose<CR>
@@ -195,12 +199,13 @@ aug i3config_ft_detection
   au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
 aug end
 
-" Airline
-let g:airline_powerline_fonts = 1
 
 " Ale
-let g:airline#extensions#ale#enabled = 1
 let g:ale_enabled = 1
+
+" vimviki
+let g:vimwiki_list = [{'path': '~/dev/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+au Filetype vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
 
 " Fzf bindings
 nmap <Leader>f :GFiles<CR>
@@ -218,3 +223,8 @@ nmap <Leader>: :History:<CR>
 nmap <Leader>/ :History/<CR>
 nmap <Leader>M :Maps<CR>
 nmap <Leader>s :Filetypes<CR>
+
+" netrw
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 20
