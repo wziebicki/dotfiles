@@ -1,7 +1,6 @@
 # Adds `~/.scripts` and all subdirectories to $PATH
 export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 export EDITOR="nvim"
-export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
 export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
@@ -11,12 +10,9 @@ export JAVA_HOME="$HOME/.sdkman/candidates/java/current/"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-alias clipclean='clipdel -d .*'
 alias r='ranger'
-alias cm='nvim $HOME/.config/mutt/muttrc'
 alias cv='nvim $HOME/.config/nvim/init.vim'
 alias cb='nvim $HOME/.bashrc'
-alias cs='nvim $HOME/.config/sxhkd/sxhkdrc'
 alias ch='sudo usb_modeswitch -v 0x12d1 -p 0x1f01 -J'
 # less/man colors
 export LESS=-R
