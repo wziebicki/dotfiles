@@ -8,10 +8,7 @@
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
 
-setbg &       # Set the background
 unclutter &   # Remove mouse when idle
-xcompmgr &    # xcompmgr for transparency
-dunst &       # dunst for notifications
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 xrandr --auto
 xrandr --dpi 96

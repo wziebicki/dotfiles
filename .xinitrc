@@ -10,7 +10,6 @@
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
-sxhkd &       # Bind keys
-clipmenud &   # clipboard manager
-exec dwm
+export XDG_SESSION_TYPE=x11
+exec startxfce4
 
