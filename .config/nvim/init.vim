@@ -194,12 +194,6 @@ augroup autosourcing
   autocmd BufWritePost init.vim source %
 augroup END
 
-aug i3config_ft_detection
-  au!
-  au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
-aug end
-
-
 " Ale
 let g:ale_enabled = 1
 
