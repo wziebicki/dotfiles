@@ -149,29 +149,45 @@ nnoremap ; :
 
 " Switch to last edited buffer
 nnoremap <bs> <c-^>
+nnoremap <leader>1 :bp<CR>
+nnoremap <leader>2 :bn<CR>
 
 " Faster window movement
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+" Below h,l with conflict with fzf
+" nnoremap <leader>h :wincmd h<CR>
+" nnoremap <leader>j :wincmd j<CR>
+" nnoremap <leader>k :wincmd k<CR>
+" nnoremap <leader>l :wincmd l<CR>
 
+nnoremap <leader>pv :wincmd v<bar> :wincmd H<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <silent> <Leader>+ :vertical resize +5<CR>
+nnoremap <silent> <Leader>- :vertical resize -5<CR>
+
+" Always show search results in center of the screen
 nnoremap n nzz
 nnoremap N Nzz
 
-set splitbelow
-set splitright
+set spelllang=en,pl
 
-"set termguicolors
-colorscheme iceberg
+set splitbelow
+
+colorscheme gruvbox
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " Util snips
 " Trigger configuration. Do not use <tab> if you use
 " https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsListSnippets = '<c-e>'
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsUsePythonVersion = 3
@@ -181,6 +197,12 @@ nnoremap <leader>a :cclose<CR>
 
 "Edit my .vimrc file
 nmap <Leader>ev :e $MYVIMRC<cr>
+
+" Folding
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=manual
 " Enable folding with the spacebar
 nnoremap <space> za
 
@@ -220,5 +242,6 @@ nmap <Leader>s :Filetypes<CR>
 
 " netrw
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
+let g:netrw_browse_split = 2
 let g:netrw_winsize = 20
+let g:netrw_altv=1

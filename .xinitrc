@@ -10,6 +10,8 @@
 
 [ -f ~/.xprofile ] && . ~/.xprofile
 
+/usr/bin/xmodmap ~/.xmodmap
+
 export XDG_SESSION_TYPE=x11
 exec startxfce4
 
