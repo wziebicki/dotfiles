@@ -17,15 +17,16 @@ Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
 Plug 'flazz/vim-colorschemes'
-Plug 'easymotion/vim-easymotion'
+Plug 'ayu-theme/ayu-vim'
 Plug 'w0rp/ale'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf.vim'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 filetype plugin indent on
@@ -75,17 +76,17 @@ set cpoptions=ces$
 
 " tell VIM to always put a status line in, even if there is only one window
 set laststatus=2
-if has('statusline')
-  set statusline=%t\  "tail of the filename
-  set statusline+=%{&ff} "file format
-  set statusline+=%h "help file flag
-  set statusline+=%m "modified flag
-  set statusline+=%r "read only flag
-  set statusline+=%y "filetype
-  set statusline+=%c, "cursor column
-  set statusline+=%l/%L "cursor line/total lines
-  set statusline+=\ %P "percent through file
-endif
+"if has('statusline')
+"  set statusline=%t\  "tail of the filename
+"  set statusline+=%{&ff} "file format
+"  set statusline+=%h "help file flag
+"  set statusline+=%m "modified flag
+"  set statusline+=%r "read only flag
+"  set statusline+=%y "filetype
+"  set statusline+=%c, "cursor column
+"  set statusline+=%l/%L "cursor line/total lines
+"  set statusline+=\ %P "percent through file
+"endif
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -129,7 +130,7 @@ set wildignore+=*.o,*.class,*.git,*.svn
 " which sucks.  Setting it to double makes it awesome.
 set ambiwidth=double
 
-" OK, so I'm gonna remove the VIM safety 
+" OK, so I'm gonna remove the VIM safety
 set nobackup
 set nowritebackup
 set noswapfile
@@ -175,11 +176,17 @@ set spelllang=en,pl
 
 set splitbelow
 
-colorscheme gruvbox
 
 if (has("termguicolors"))
   set termguicolors
 endif
+
+"let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+"let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
+let g:airline_theme='ayu_mirage'
+
 
 " Util snips
 " Trigger configuration. Do not use <tab> if you use
@@ -215,6 +222,11 @@ augroup autosourcing
   autocmd!
   autocmd BufWritePost init.vim source %
 augroup END
+
+" highlight trailing whitespaces
+match ErrorMsg '\s\+$'
+" remove trailing whitespaces
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Ale
 let g:ale_enabled = 1
