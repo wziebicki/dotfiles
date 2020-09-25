@@ -27,6 +27,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': ':UpdateRemotePlugins'}
 call plug#end()
 
 filetype plugin indent on
@@ -164,7 +165,7 @@ nnoremap <C-H> <C-W><C-H>
 " nnoremap <leader>k :wincmd k<CR>
 " nnoremap <leader>l :wincmd l<CR>
 
-nnoremap <leader>pv :wincmd v<bar> :wincmd H<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>pv <cmd>CHADopen <CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
