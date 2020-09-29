@@ -18,6 +18,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'flazz/vim-colorschemes'
+Plug 'ryanoasis/vim-devicons'
 " A git wrapper.
 Plug 'tpope/vim-fugitive'
 Plug 'ayu-theme/ayu-vim'
@@ -31,6 +32,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Navigate and manipulate files in a tree view.
 Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'lambdalisue/fern-renderer-devicons.vim'
 Plug 'lambdalisue/fern-mapping-mark-children.vim'
 " Automatically show Vim's complete menu while typing.
 Plug 'vim-scripts/AutoComplPop'
@@ -284,29 +287,9 @@ endfunction
 " lambdalisue/fern.vim
 " .............................................................................
 
-" Disable netrw.
-let g:loaded_netrw  = 1
-let g:loaded_netrwPlugin = 1
-let g:loaded_netrwSettings = 1
-let g:loaded_netrwFileHandlers = 1
-
-augroup my-fern-hijack
-  autocmd!
-  autocmd BufEnter * ++nested call s:hijack_directory()
-augroup END
-
-function! s:hijack_directory() abort
-  let path = expand('%:p')
-  if !isdirectory(path)
-    return
-  endif
-  bwipeout %
-  execute printf('Fern %s', fnameescape(path))
-endfunction
-
 " Custom settings and mappings.
 let g:fern#disable_default_mappings = 1
-
+let g:fern#renderer = "devicons"
 noremap <silent> <Leader>pv :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
 
 function! FernInit() abort
@@ -325,7 +308,7 @@ function! FernInit() abort
   nmap <buffer> M <Plug>(fern-action-rename)
   nmap <buffer> h <Plug>(fern-action-hidden-toggle)
   nmap <buffer> r <Plug>(fern-action-reload)
-  nmap <buffer> k <Plug>(fern-action-mark-toggle)
+  nmap <buffer> k <Plug>(fern-action-mark:toggle)
   nmap <buffer> K <Plug>(fern-action-mark-children:leaf)
   nmap <buffer> b <Plug>(fern-action-open:split)
   nmap <buffer> v <Plug>(fern-action-open:vsplit)
