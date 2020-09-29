@@ -4,7 +4,6 @@
 
 PS1='[\u@\h \W]\$ '
 
-[ -f "$HOME/.config/shortcutrc" ] && source "$HOME/.config/shortcutrc" # Load shortcut aliases
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
 source /usr/share/fzf/completion.bash

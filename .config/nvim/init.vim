@@ -34,6 +34,10 @@ Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-mapping-mark-children.vim'
 " Automatically show Vim's complete menu while typing.
 Plug 'vim-scripts/AutoComplPop'
+" Run a diff on 2 directories.
+Plug 'will133/vim-dirdiff'
+" Run a diff on 2 blocks of text.
+Plug 'AndrewRadev/linediff.vim'
 call plug#end()
 
 filetype plugin indent on
@@ -171,7 +175,6 @@ nnoremap <C-H> <C-W><C-H>
 " nnoremap <leader>k :wincmd k<CR>
 " nnoremap <leader>l :wincmd l<CR>
 
-nnoremap <leader>pv <cmd>CHADopen <CR>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 
@@ -304,7 +307,7 @@ endfunction
 " Custom settings and mappings.
 let g:fern#disable_default_mappings = 1
 
-noremap <silent> <Leader>f :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
+noremap <silent> <Leader>pv :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
 
 function! FernInit() abort
   nmap <buffer><expr>

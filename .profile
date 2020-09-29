@@ -7,13 +7,6 @@ export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
 
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current/"
 
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-alias ls='ls --color=auto'
-alias grep='grep --color=auto'
-alias r='ranger'
-alias cv='nvim $HOME/.config/nvim/init.vim'
-alias cb='nvim $HOME/.bashrc'
-alias ch='sudo usb_modeswitch -v 0x12d1 -p 0x1f01 -J'
 # less/man colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '')"; a="${a%_}"
