@@ -1,5 +1,8 @@
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias ls='ls --color=auto'
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"
 alias grep='grep --color=auto'
 alias r='ranger'
 alias cv='nvim $HOME/.config/nvim/init.vim'
