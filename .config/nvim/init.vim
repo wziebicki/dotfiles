@@ -292,7 +292,7 @@ let g:fern#disable_default_mappings = 1
 let g:fern#renderer = "devicons"
 noremap <silent> <Leader>pv :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
 
-function! FernInit() abort
+function! s:init_fern() abort
   nmap <buffer><expr>
         \ <Plug>(fern-my-open-expand-collapse)
         \ fern#smart#leaf(
@@ -300,7 +300,8 @@ function! FernInit() abort
         \   "\<Plug>(fern-action-expand)",
         \   "\<Plug>(fern-action-collapse)",
         \ )
-  nmap <buffer> <CR> <Plug>(fern-my-open-expand-collapse)
+  nmap <buffer> o <Plug>(fern-action-expand)
+  nmap <buffer> O <Plug>(fern-action-collapse)
   nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
   nmap <buffer> n <Plug>(fern-action-new-path)
   nmap <buffer> d <Plug>(fern-action-remove)
@@ -316,11 +317,10 @@ function! FernInit() abort
   nmap <buffer><nowait> > <Plug>(fern-action-enter)
 endfunction
 
-augroup FernGroup
-  autocmd!
-  autocmd FileType fern call FernInit()
+augroup fern-custom
+  autocmd! *
+  autocmd FileType fern call s:init_fern()
 augroup END
-
 " vimviki
 let g:vimwiki_list = [{'path': '~/dev/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 au Filetype vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
