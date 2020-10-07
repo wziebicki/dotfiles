@@ -13,7 +13,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'flazz/vim-colorschemes'
-Plug 'ryanoasis/vim-devicons'
 " A git wrapper.
 Plug 'tpope/vim-fugitive'
 Plug 'ayu-theme/ayu-vim'
@@ -30,8 +29,9 @@ Plug 'vim-airline/vim-airline-themes'
 " Navigate and manipulate files in a tree view.
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/fern-renderer-devicons.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/fern-mapping-mark-children.vim'
+Plug 'lambdalisue/nerdfont.vim'
 " Automatically show Vim's complete menu while typing.
 Plug 'vim-scripts/AutoComplPop'
 " Run a diff on 2 directories.
@@ -265,7 +265,8 @@ nmap <Leader>/ :History/<CR>
 nmap <Leader>M :Maps<CR>
 nmap <Leader>s :Filetypes<CR>
 
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height':0.8 } }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height':0.6 } }
+let g:fzf_preview_window = ''
 
 set complete+=kspell
 set completeopt=menuone,longest
@@ -288,7 +289,7 @@ endfunction
 
 " Custom settings and mappings.
 let g:fern#disable_default_mappings = 1
-let g:fern#renderer = "devicons"
+let g:fern#renderer = "nerdfont"
 noremap <silent> <Leader>pv :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
 
 function! s:init_fern() abort
