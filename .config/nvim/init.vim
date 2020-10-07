@@ -1,10 +1,5 @@
 set nocompatible
 
-if &shell =~# 'fish$'
-  set shell=sh
-endif
-
-
 set langmenu=en_US
 let $LANG = 'en_US'
 
@@ -24,7 +19,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'ayu-theme/ayu-vim'
 Plug 'w0rp/ale'
 Plug 'godlygeek/tabular'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
 Plug 'junegunn/fzf.vim'
+Plug 'stsewd/fzf-checkout.vim'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
@@ -268,6 +265,8 @@ nmap <Leader>/ :History/<CR>
 nmap <Leader>M :Maps<CR>
 nmap <Leader>s :Filetypes<CR>
 
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height':0.8 } }
+
 set complete+=kspell
 set completeopt=menuone,longest
 
@@ -321,6 +320,15 @@ augroup fern-custom
   autocmd! *
   autocmd FileType fern call s:init_fern()
 augroup END
+
 " vimviki
 let g:vimwiki_list = [{'path': '~/dev/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 au Filetype vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
+
+" fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gj :diffget //3<CR>
+nmap <leader>gf :diffget //2<CR>
+
+" fzf-checkout
+nnoremap <leader>gc :GBranches<CR>
