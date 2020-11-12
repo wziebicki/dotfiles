@@ -1,11 +1,17 @@
 # Adds `~/.scripts` and all subdirectories to $PATH
-export PATH="$PATH:$(du "$HOME/.scripts/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export READER="zathura"
 export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
-
+export TERMINAL="st"
+export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export JAVA_HOME="$HOME/.sdkman/candidates/java/current/"
+
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/password-store"
 
 # less/man colors
 export LESS=-R

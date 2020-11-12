@@ -20,13 +20,19 @@ shopt -s histappend
 # Ensure $LINES and $COLUMNS always get updated.
 shopt -s checkwinsize
 
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
 }
 
-export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
 
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
-source /usr/share/fzf/completion.bash
-source /usr/share/fzf/key-bindings.bash
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/wziebicki/.sdkman"
+[[ -s "/home/wziebicki/.sdkman/bin/sdkman-init.sh" ]] && source "/home/wziebicki/.sdkman/bin/sdkman-init.sh"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass

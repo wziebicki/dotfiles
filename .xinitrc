@@ -12,6 +12,9 @@
 
 /usr/bin/xmodmap ~/.xmodmap
 
+sxhkd &
+clipmenud &
+
 export XDG_SESSION_TYPE=x11
-exec startxfce4
+exec dwm
 
