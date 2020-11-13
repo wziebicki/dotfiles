@@ -16,5 +16,5 @@ sxhkd &
 clipmenud &
 
 export XDG_SESSION_TYPE=x11
-exec dwm
+ssh-agent dwm
 
