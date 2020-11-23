@@ -23,3 +23,4 @@ export LESS_TERMCAP_se="$(printf '%b' '')"; a="${a%_}"
 export LESS_TERMCAP_us="$(printf '%b' '')"; a="${a%_}"
 export LESS_TERMCAP_ue="$(printf '%b' '')"; a="${a%_}"
 
+[ "$(tty)" = "/dev/tty1" ] && ! pidof -s Xorg >/dev/null 2>&1 && exec startx
