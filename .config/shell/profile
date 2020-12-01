@@ -1,7 +1,7 @@
 # Adds `~/.scripts` and all subdirectories to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')"
 export EDITOR="nvim"
-export BROWSER="firefox"
+export BROWSER="brave"
 export READER="zathura"
 export SUDO_ASKPASS="$HOME/.scripts/tools/dmenupass"
 export TERMINAL="st"

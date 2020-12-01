@@ -323,7 +323,7 @@ augroup fern-custom
 augroup END
 
 " vimviki
-let g:vimwiki_list = [{'path': '~/dev/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 au Filetype vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
 
 " fugitive
