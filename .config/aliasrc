@@ -11,7 +11,7 @@ alias cb='nvim $HOME/.bashrc'
 alias ch='sudo usb_modeswitch -v 0x12d1 -p 0x1f01 -J'
 alias diff="diff --color -u"
 alias mbsync="mbsync -c \"$XDG_CONFIG_HOME/isync/mbsyncrc\""
-
+alias abook="abook -C \"$XDG_CONFIG_HOME/abook/abookrc\" --datafile \"$XDG_CONFIG_HOME/abook/addressbook\""
 vdiff () {
     if [ "${#}" -ne 2 ] ; then
         echo "vdiff requires two arguments"
