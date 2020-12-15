@@ -1,6 +1,6 @@
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias prv-dotfiles='/usr/bin/git --git-dir=$HOME/.private-dotfiles/ --work-tree=$HOME'
-alias ls='ls --color=auto'
+alias ls="ls -hN --color=auto --group-directories-first"
 alias ll="ls -alF"
 alias la="ls -A"
 alias l="ls -CF"
@@ -18,14 +18,6 @@ alias rm="rm -vI"
 alias mkd="mkdir -pv"
 alias	yt="youtube-dl --add-metadata -i"
 alias	yta="yt -x -f bestaudio/best"
-
-# Colorize commands when possible.
-alias \
-	ls="ls -hN --color=auto --group-directories-first" \
-	grep="grep --color=auto" \
-	diff="diff --color=auto"
-
-
 
 vdiff () {
     if [ "${#}" -ne 2 ] ; then
