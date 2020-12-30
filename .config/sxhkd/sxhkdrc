@@ -1,16 +1,8 @@
 # Basic binds
-super + Return
-        $TERMINAL
-super + d
-        dmenu_run
-super + i
-        $TERMINAL -e htop
 super + n
         $TERMINAL -e neomutt
 super + shift + a
         $TERMINAL -e pulsemixer
-super + shift + w
-        $BROWSER
 super + Insert
         clipmenu
 super + shift + x
