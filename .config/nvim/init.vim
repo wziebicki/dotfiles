@@ -5,39 +5,28 @@ let $LANG = 'en_US'
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'shougo/deoplete.nvim'
-Plug 'zchee/deoplete-docker'
-Plug 'SirVer/ultisnips'
-Plug 'chriskempson/base16-vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'flazz/vim-colorschemes'
 " A git wrapper.
 Plug 'tpope/vim-fugitive'
-Plug 'ayu-theme/ayu-vim'
-Plug 'w0rp/ale'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install()} }
-Plug 'junegunn/fzf.vim'
-Plug 'stsewd/fzf-checkout.vim'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/goyo.vim'
 Plug 'vimwiki/vimwiki'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 " Navigate and manipulate files in a tree view.
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/fern-hijack.vim'
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-mapping-mark-children.vim'
 Plug 'lambdalisue/nerdfont.vim'
-" Automatically show Vim's complete menu while typing.
-Plug 'vim-scripts/AutoComplPop'
 " Run a diff on 2 directories.
 Plug 'will133/vim-dirdiff'
 " Run a diff on 2 blocks of text.
 Plug 'AndrewRadev/linediff.vim'
+Plug 'itchyny/lightline.vim'
+" Nord theme
+Plug 'arcticicestudio/nord-vim'
+" Telescope file finder / picker
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 call plug#end()
 
 filetype plugin indent on
@@ -87,20 +76,6 @@ set cpoptions=ces$
 
 " tell VIM to always put a status line in, even if there is only one window
 set laststatus=2
-"if has('statusline')
-"  set statusline=%t\  "tail of the filename
-"  set statusline+=%{&ff} "file format
-"  set statusline+=%h "help file flag
-"  set statusline+=%m "modified flag
-"  set statusline+=%r "read only flag
-"  set statusline+=%y "filetype
-"  set statusline+=%c, "cursor column
-"  set statusline+=%l/%L "cursor line/total lines
-"  set statusline+=\ %P "percent through file
-"endif
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
 
 " Don't update the display while executing macros
 set lazyredraw
@@ -169,11 +144,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-" Below h,l with conflict with fzf
-" nnoremap <leader>h :wincmd h<CR>
-" nnoremap <leader>j :wincmd j<CR>
-" nnoremap <leader>k :wincmd k<CR>
-" nnoremap <leader>l :wincmd l<CR>
 
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
@@ -197,23 +167,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 
-"let ayucolor="light"  " for light version of theme
-let ayucolor="mirage" " for mirage version of theme
-"let ayucolor="dark"   " for dark version of theme
-colorscheme ayu
-let g:airline_theme='ayu_mirage'
-
-
-" Util snips
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/nvim/ultisnips']
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsUsePythonVersion = 3
+colorscheme nord
 
 " Quicklist navigation
 nnoremap <leader>a :cclose<CR>
@@ -244,30 +198,6 @@ match ErrorMsg '\s\+$'
 " remove trailing whitespaces
 autocmd BufWritePre * :%s/\s\+$//e
 
-" Ale
-let g:ale_enabled = 1
-
-
-" Fzf bindings
-nmap <Leader>f :GFiles<CR>
-nmap <Leader>F :Files<CR>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>h :History<CR>
-nmap <Leader>t :BTags<CR>
-nmap <Leader>T :Tags<CR>
-nmap <Leader>l :BLines<CR>
-nmap <Leader>L :Lines<CR>
-nmap <Leader>' :Marks<CR>
-nmap <Leader>a :Ag<Space>
-nmap <Leader>H :Helptags!<CR>
-nmap <Leader>: :History:<CR>
-nmap <Leader>/ :History/<CR>
-nmap <Leader>M :Maps<CR>
-nmap <Leader>s :Filetypes<CR>
-
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height':0.6 } }
-let g:fzf_preview_window = ''
-
 set complete+=kspell
 set completeopt=menuone,longest
 
@@ -283,45 +213,6 @@ function SetVimPresentationMode()
   endif
 endfunction
 
-" .............................................................................
-" lambdalisue/fern.vim
-" .............................................................................
-
-" Custom settings and mappings.
-let g:fern#disable_default_mappings = 1
-let g:fern#renderer = "nerdfont"
-noremap <silent> <Leader>pv :Fern . -drawer -reveal=% -toggle -width=35<CR><C-w>=
-
-function! s:init_fern() abort
-  nmap <buffer><expr>
-        \ <Plug>(fern-my-open-expand-collapse)
-        \ fern#smart#leaf(
-        \   "\<Plug>(fern-action-open:select)",
-        \   "\<Plug>(fern-action-expand)",
-        \   "\<Plug>(fern-action-collapse)",
-        \ )
-  nmap <buffer> o <Plug>(fern-action-expand)
-  nmap <buffer> O <Plug>(fern-action-collapse)
-  nmap <buffer> <2-LeftMouse> <Plug>(fern-my-open-expand-collapse)
-  nmap <buffer> n <Plug>(fern-action-new-path)
-  nmap <buffer> d <Plug>(fern-action-remove)
-  nmap <buffer> m <Plug>(fern-action-move)
-  nmap <buffer> M <Plug>(fern-action-rename)
-  nmap <buffer> h <Plug>(fern-action-hidden-toggle)
-  nmap <buffer> r <Plug>(fern-action-reload)
-  nmap <buffer> k <Plug>(fern-action-mark:toggle)
-  nmap <buffer> K <Plug>(fern-action-mark-children:leaf)
-  nmap <buffer> b <Plug>(fern-action-open:split)
-  nmap <buffer> v <Plug>(fern-action-open:vsplit)
-  nmap <buffer><nowait> < <Plug>(fern-action-leave)
-  nmap <buffer><nowait> > <Plug>(fern-action-enter)
-endfunction
-
-augroup fern-custom
-  autocmd! *
-  autocmd FileType fern call s:init_fern()
-augroup END
-
 " vimviki
 let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 au Filetype vimwiki setlocal shiftwidth=6 tabstop=6 noexpandtab
@@ -331,5 +222,10 @@ nmap <leader>gs :G<CR>
 nmap <leader>gj :diffget //3<CR>
 nmap <leader>gf :diffget //2<CR>
 
-" fzf-checkout
-nnoremap <leader>gc :GBranches<CR>
+" lightline
+set noshowmode
+let g:lightline = { 'colorscheme': 'nord' }
+
+" gfiles shortcut
+nnoremap <C-f> <cmd>Telescope find_files<cr>
+nnoremap <C-g> <cmd>Telescope git_files<cr>

@@ -20,13 +20,6 @@ shopt -s histappend
 # Ensure $LINES and $COLUMNS always get updated.
 shopt -s checkwinsize
 
-function _update_ps1() {
-    PS1=$(powerline-shell $?)
-}
-
-if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-fi
 
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 
@@ -36,3 +29,5 @@ export SDKMAN_DIR="/home/wziebicki/.sdkman"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 [ -f /usr/share/bash-completion/completions/pass ] && source /usr/share/bash-completion/completions/pass
+
+eval "$(starship init bash)"
